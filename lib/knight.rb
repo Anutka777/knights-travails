@@ -1,38 +1,39 @@
 # frozen_string_literal: true
 
-# Knight position and possible turns
+# Knight's coordinates
 class Knight
-  attr_reader :horizontal, :vertical, :possible_moves
+  attr_reader :current_coordinates, :possible_coordinates
+  attr_accessor :previous_coordinates
 
-  POSSIBLE_MOVES = [[2, 1], [1, 2], [-1, 2], [-2, 1], [-2, -1], [-1, -2], [1, -2], [2, -1]].freeze
+  POSSIBLE_MOVES = [
+    [2, 1], [1, 2], [-1, 2], [-2, 1], [-2, -1], [-1, -2], [1, -2], [2, -1]
+  ].freeze
 
-  def initialize(horizontal, vertical)
-    @horizontal = horizontal
-    @vertical = vertical
-    @possible_moves = possible_moves_for_one_turn
+  def initialize(current_coordinates, previous_coordinates = [])
+    @current_coordinates = current_coordinates
+    @possible_coordinates = find_possible_coordinates
+    @previous_coordinates = previous_coordinates
   end
 
   private
 
-  def possible_moves_for_one_turn
-    array_of_possible_positions = []
-
-    POSSIBLE_MOVES.each do |turn|
-      array_of_possible_positions << [turn[0] + horizontal, turn[1] + vertical]
+  def find_possible_coordinates
+    potential_coordinates = []
+    POSSIBLE_MOVES.each do |move|
+      potential_coordinates << [
+        move[0] + @current_coordinates[0],
+        move[1] + @current_coordinates[1]
+      ]
     end
-
-    clear_overboard(array_of_possible_positions)
+    delete_overboard(potential_coordinates)
   end
 
-  def clear_overboard(positions)
-    positions.reject do |position|
-      position[0].negative? ||
-        position[0] > 7 ||
-        position[1].negative? ||
-        position[1] > 7
+  def delete_overboard(coordinates)
+    coordinates.reject do |coordinate|
+      coordinate[0].negative? ||
+        coordinate[1].negative? ||
+        coordinate[0] > 7 ||
+        coordinate[1] > 7
     end
   end
 end
-
-# knight = Knight.new(2, 1)
-# p knight.possible_moves_for_one_turn
