@@ -1,19 +1,31 @@
 # frozen_string_literal: true
 
-require_relative 'move_tree'
-require_relative 'knight'
+require_relative 'moves_tree'
 
 def knight_moves(start, finish)
-  tree = KnightMoveSearchTree.new(Knight.new(start))
-  result = false
+  search_tree = KnightMoveSearchTree.new(Knight.new(start))
+  knight_on_finish = nil
   loop do
-    break result = tree.search_for_finish(finish) if tree.search_for_finish(finish).kind_of?(Knight)
+    # Successful search returns a single knight object instead of a whole layer.
+    break knight_on_finish = search_tree.search(finish) if
+      search_tree.search(finish).is_a?(Knight)
 
-      tree.descend_layer_for_search
-     tree.search_for_finish(finish)
+    # Proceed generating new possible moves and search there.
+    search_tree.descend_layer_for_search
+    search_tree.search(finish)
   end
-  result
+  # I wish it was more elegant ... :(
+  path = knight_on_finish.previous_coordinates.flatten.each_slice(2).to_a
+  output(path, start, finish)
 end
 
-p knight_moves([0, 0], [7, 7])
-p knight_moves([0, 6], [0, 1])
+def output(path, start, finish)
+  puts '---------------------------------------------------------------------'
+  puts "The shortest path from #{start} to #{finish} is #{path.length} turns:"
+  puts ''
+  path.each { |step| print "#{step} => " }
+  puts finish.to_s
+  puts '---------------------------------------------------------------------'
+end
+
+knight_moves([0, 0], [7, 7])

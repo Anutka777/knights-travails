@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
-# Knight's coordinates
+# Saving coordinates for a single position.
+# It's gone-overboard protected.
+# Holds current coordinates.
+# Finds and holds possible next coordinates.
+# Holds path in coordinates for getting here.
 class Knight
   attr_reader :current_coordinates, :possible_coordinates
   attr_accessor :previous_coordinates
