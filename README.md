@@ -4,7 +4,7 @@ Script outputting ***the shortest possible way*** for a chess knight to get from
 > Examlary line for calling the script in main.rb:\
 `knight_moves([0, 0], [7, 7])`\
 `[0, 0]` - starting position\
-`[7, 7]` - position, where you want to move/
+`[7, 7]` - position, where you want to move
 
 Coordinates format:
 | | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | |
