@@ -14,6 +14,7 @@ def knight_moves(start, finish)
     search_tree.descend_layer_for_search
     search_tree.search(finish)
   end
+
   # I wish it was more elegant ... :(
   path = knight_on_finish.previous_coordinates.flatten.each_slice(2).to_a
   output(path, start, finish)

@@ -1,2 +1,20 @@
 # knights-travails
-Script outputting the simpliest possible way for a chess knight to get from one square to another
+Script outputting ***the shortest possible way*** for a chess knight to get from one position to another.
+
+> Examlary line for calling the script in main.rb:\
+`knight_moves([0, 0], [7, 7])`\
+`[0, 0]` - starting position\
+`[7, 7]` - position, where you want to move/
+
+Coordinates format:
+| | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | |
+| :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
+| h | [0, 7] | [1, 7] | [2, 7] | [3, 7] | [4, 7] | [5, 7] | [6, 7] | [7,7] | h |
+| g | [0, 6] | [1, 6] | [2, 6] | [3, 6] | [4, 6] | [5, 6] | [6, 6] | [7, 6] | g |
+| f | [0, 5] | [1, 5] | [2, 5] | [3, 5] | [4, 5] | [5, 5] | [6, 5] | [7, 5] | f |
+| e | [0, 4] | [1, 4] | [2, 4] | [3, 4] | [4, 4] | [5, 4] | [6, 4] | [7, 4] | e |
+| d | [0, 3] | [1, 3] | [2, 3] | [3, 3] | [4, 3] | [5, 3] | [6, 3] | [7, 3] | d |
+| c | [0, 2] | [1, 2] | [2, 2] | [3, 2] | [4, 2] | [5, 2] | [6, 2] | [7, 2] | c |
+| b | [0, 1] | [1, 1] | [2, 1] | [3, 1] | [4, 1] | [5, 1] | [6, 1] | [7, 1] | b |
+| a | [0, 0] | [1, 0] | [2, 0] | [3, 0] | [4, 0] | [5, 0] | [6, 0] | [7, 0] | a |
+|  | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
